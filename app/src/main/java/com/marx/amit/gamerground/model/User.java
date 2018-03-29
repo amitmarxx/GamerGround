@@ -8,30 +8,30 @@ import java.util.ArrayList;
 
 public class User {
 
-    private int id;
+    private String id;
     private String name;
     private String image;
-    private String Status;
+    private String status;
     private ArrayList<String> genres;
-    private ArrayList<String> gameSellId;
+    private ArrayList<String> gameSellId; //TODO: ArrayList<GameSell> games
 
     public User() {
     }
 
-    public User(int id, String name, String image, String status, ArrayList<String> genres, ArrayList<String> gameSellId) {
+    public User(String id, String name, String image, String status, ArrayList<String> genres, ArrayList<String> gameSellId) {
         this.id = id;
         this.name = name;
         this.image = image;
-        Status = status;
+        this.status = status;
         this.genres = genres;
         this.gameSellId = gameSellId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,11 +52,11 @@ public class User {
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
 
     public ArrayList<String> getGenres() {
@@ -81,7 +81,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +
-                ", Status='" + Status + '\'' +
+                ", status='" + status + '\'' +
                 ", genres=" + genres +
                 ", gameSellId=" + gameSellId +
                 '}';
