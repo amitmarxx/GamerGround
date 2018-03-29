@@ -42,6 +42,16 @@ public class Game {
 
     }
 
+    public Game(int id, String name, String summary, double rating, CoverBean cover, List<Integer> genres, List<ReleaseDatesBean> release_dates) {
+        this.id = id;
+        this.name = name;
+        this.summary = summary;
+        this.rating = rating;
+        this.cover = cover;
+        this.genres = genres;
+        this.release_dates = release_dates;
+    }
+
     public int getId() {
         return id;
     }

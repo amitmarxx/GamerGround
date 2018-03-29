@@ -1,6 +1,7 @@
 package com.marx.amit.gamerground.model;
 
-import sun.jvm.hotspot.code.Location;
+
+import android.location.Location;
 
 /**
  * Created by tsuryohananov on 29/03/2018.
