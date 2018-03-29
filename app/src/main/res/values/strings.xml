@@ -1,0 +1,20 @@
+<resources>
+    <string name="GamerGround">GamerGround</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="country_prompt">What you wanna Sell?</string>
+
+    <string-array name="array_item_type">
+        <item>Game</item>
+        <item>Console</item>
+        <item>Accessories</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tab_spinner">TabSpinnerActivity</string>
+</resources>

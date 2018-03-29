@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "648659580039",
+    "firebase_url": "https://gamerground-388c3.firebaseio.com",
+    "project_id": "gamerground-388c3",
+    "storage_bucket": "gamerground-388c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648659580039:android:9dfd0e61435eb4b1",
+        "android_client_info": {
+          "package_name": "com.marx.amit.gamerground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648659580039-9scvhsiup23u17vv6d41r97thunhevc2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marx.amit.gamerground",
+            "certificate_hash": "26fcc05fd0c19b63b65f0674ed57e0777d9fe79d"
+          }
+        },
+        {
+          "client_id": "648659580039-aob6slcra54ilfvp0va5jfhndam4fq76.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIbYP7RIML_YGw-OoiWg8XkdE0wVkPGWk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648659580039-aob6slcra54ilfvp0va5jfhndam4fq76.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
