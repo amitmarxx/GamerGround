@@ -28,11 +28,17 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PublishActivity extends AppCompatActivity implements OnItemSelectedListener{
+public class PublishActivity extends AppCompatActivity implements OnItemSelectedListener {
 
+    //GameFragment gameFragment;
+
+    interface OnGamesArivedListener{
+        void onGamesArrived(ArrayList<Game> games);
+    }
     private AutoCompleteTextView actv;
 
     private GameFragment gameFragment;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,17 +67,15 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, COUNTRIES);
         MultiAutoCompleteTextView textView = findViewById(R.id.actvProduct);
         textView.setAdapter(adapter);
         textView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
     }
 
-    private static final String[] COUNTRIES = new String[] {
+    private static final String[] COUNTRIES = new String[]{
             "Belgium", "France", "Italy", "Germany", "Spain"
     };
-
 
 
     @Override
@@ -142,7 +146,7 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
 
                 .addSearch(toSearch)
                 .addFields("id,name,release_dates.date,rating,summary,cover,genres")
-                .addLimit("1")
+                .addLimit("10")
                 .addOffset("0");
 
         wrapper.search(APIWrapper.Endpoint.GAMES, params, new onSuccessCallback() {
@@ -154,27 +158,29 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
                 Gson gson = new Gson();
 
                 String game1 = null;
-
+                ArrayList<Game> games = new ArrayList<>();
                 for (int i = 0; i < result.length(); i++) {
                     try {
                         String json = result.get(i).toString();
 
                         Game game = gson.fromJson(json, Game.class);
 
-
-
+                        games.add(game);
                         if (i == 0)
                             game1 = game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl();
-                        System.out.println(game.getCover().getUrl());
-                       // tvSearch.setText(game1 + "\n" + game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl());
+                        // tvSearch.setText(game1 + "\n" + game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl());
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), "ERROR!!!!!!", Toast.LENGTH_LONG).show();
                     }
                 }
-                String searchResult = result.toString();
-                System.out.println(searchResult);
 
+                gameFragment.gamesArrived(games);
+                String searchResult = result.toString();
+
+                System.out.println(searchResult);
+                if (gameFragment!=null)
+                gameFragment.gamesArrived(games);
             }
 
             @Override
@@ -188,6 +194,7 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
         //Game game = new Game();
 
     }
+
 
 }
 
