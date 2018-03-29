@@ -13,18 +13,18 @@ public class User {
     private String image;
     private String status;
     private ArrayList<String> genres;
-    private ArrayList<String> gameSellId; //TODO: ArrayList<GameSell> games
+    private ArrayList<GameSell> gameSells;
 
     public User() {
     }
 
-    public User(String id, String name, String image, String status, ArrayList<String> genres, ArrayList<String> gameSellId) {
+    public User(String id, String name, String image, String status, ArrayList<String> genres, ArrayList<GameSell> gameSellId) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.status = status;
         this.genres = genres;
-        this.gameSellId = gameSellId;
+        this.gameSells = gameSellId;
     }
 
     public String getId() {
@@ -67,12 +67,12 @@ public class User {
         this.genres = genres;
     }
 
-    public ArrayList<String> getGameSellId() {
-        return gameSellId;
+    public ArrayList<GameSell> getGameSells() {
+        return gameSells;
     }
 
-    public void setGameSellId(ArrayList<String> gameSellId) {
-        this.gameSellId = gameSellId;
+    public void setGameSells(ArrayList<GameSell> gameSells) {
+        this.gameSells = gameSells;
     }
 
     @Override
@@ -83,7 +83,7 @@ public class User {
                 ", image='" + image + '\'' +
                 ", status='" + status + '\'' +
                 ", genres=" + genres +
-                ", gameSellId=" + gameSellId +
+                ", gameSells=" + gameSells +
                 '}';
     }
 
