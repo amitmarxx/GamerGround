@@ -77,7 +77,6 @@ public class GameFragment extends Fragment  {
         tvTitle.setText(game1.getName());
         tvRating.setText(String.valueOf(game1.getRating()));
         tvSummary.setText(game1.getSummary());
-//        tvDate.setText(String.valueOf(game1.getRelease_dates()));
-
+        System.out.println(game1.getRelease_dates());
     }
 }

@@ -145,7 +145,7 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
         Parameters params = new Parameters()
 
                 .addSearch(toSearch)
-                .addFields("id,name,release_dates.date,rating,summary,cover,genres")
+                .addFields("id,name,first_release_date,rating,summary,cover,genres")
                 .addLimit("10")
                 .addOffset("0");
 
