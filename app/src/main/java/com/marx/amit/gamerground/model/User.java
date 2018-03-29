@@ -13,18 +13,24 @@ public class User {
     private String image;
     private String status;
     private ArrayList<String> genres;
-    private ArrayList<String> gameSellId; //TODO: ArrayList<GameSell> games
+    private ArrayList<GameSell> gameSells;
+    private ArrayList<ConsoleSell>consoleSells;
+    private ArrayList<GameSell> favoritesGameSell;
+    private ArrayList<ConsoleSell> favoritesConsoleSell;
 
     public User() {
     }
 
-    public User(String id, String name, String image, String status, ArrayList<String> genres, ArrayList<String> gameSellId) {
+    public User(String id, String name, String image, String status, ArrayList<String> genres, ArrayList<GameSell> gameSellId, ArrayList<ConsoleSell> consoleSells, ArrayList<GameSell> favoritesGameSell, ArrayList<ConsoleSell> favoritesConsoleSell) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.status = status;
         this.genres = genres;
-        this.gameSellId = gameSellId;
+        this.gameSells = gameSellId;
+        this.consoleSells = consoleSells;
+        this.favoritesGameSell = favoritesGameSell;
+        this.favoritesConsoleSell = favoritesConsoleSell;
     }
 
     public String getId() {
@@ -67,24 +73,50 @@ public class User {
         this.genres = genres;
     }
 
-    public ArrayList<String> getGameSellId() {
-        return gameSellId;
+    public ArrayList<GameSell> getGameSells() {
+        return gameSells;
     }
 
-    public void setGameSellId(ArrayList<String> gameSellId) {
-        this.gameSellId = gameSellId;
+    public void setGameSells(ArrayList<GameSell> gameSells) {
+        this.gameSells = gameSells;
+    }
+
+    public ArrayList<ConsoleSell> getConsoleSells() {
+        return consoleSells;
+    }
+
+    public void setConsoleSells(ArrayList<ConsoleSell> consoleSells) {
+        this.consoleSells = consoleSells;
+    }
+
+    public ArrayList<GameSell> getFavoritesGameSell() {
+        return favoritesGameSell;
+    }
+
+    public void setFavoritesGameSell(ArrayList<GameSell> favoritesGameSell) {
+        this.favoritesGameSell = favoritesGameSell;
+    }
+
+    public ArrayList<ConsoleSell> getFavoritesConsoleSell() {
+        return favoritesConsoleSell;
+    }
+
+    public void setFavoritesConsoleSell(ArrayList<ConsoleSell> favoritesConsoleSell) {
+        this.favoritesConsoleSell = favoritesConsoleSell;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +
                 ", status='" + status + '\'' +
                 ", genres=" + genres +
-                ", gameSellId=" + gameSellId +
+                ", gameSells=" + gameSells +
+                ", consoleSells=" + consoleSells +
+                ", favoritesGameSell=" + favoritesGameSell +
+                ", favoritesConsoleSell=" + favoritesConsoleSell +
                 '}';
     }
-
 }
