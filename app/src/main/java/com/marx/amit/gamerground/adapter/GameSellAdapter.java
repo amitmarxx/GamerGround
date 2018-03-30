@@ -27,7 +27,7 @@ public class GameSellAdapter extends RecyclerView.Adapter<GameSellAdapter.ViewHo
     private GameSell gameSell;
 
 //    private static DatabaseReference mDatabase;
-//    private static DatabaseReference gameRef;
+//    private static DatabaseReference gameSellRef;
 
 
 
@@ -80,18 +80,12 @@ public class GameSellAdapter extends RecyclerView.Adapter<GameSellAdapter.ViewHo
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-    /*                Post post = dataSnapshot.getValue(Post.class);
-                    gotPost.add(post);
-                    posts = gotPost;
-                    recyclerView.setAdapter(new PostRecyclerViewAdapter(posts, mListener, context));*/
+
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-/*                    Post post = dataSnapshot.getValue(Post.class);
-                    gotPost.add(post);
-                    posts = gotPost;
-                    recyclerView.setAdapter(new PostRecyclerViewAdapter(posts, mListener, context));*/
+
             }
 
             @Override

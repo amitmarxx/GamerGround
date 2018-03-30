@@ -26,7 +26,7 @@ public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.
     private ConsoleSell consoleSell;
 
 //    private static DatabaseReference mDatabase;
-//    private static DatabaseReference gameRef;
+//    private static DatabaseReference consoleSellRef;
 
 
 
@@ -79,18 +79,12 @@ public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-    /*                Post post = dataSnapshot.getValue(Post.class);
-                    gotPost.add(post);
-                    posts = gotPost;
-                    recyclerView.setAdapter(new PostRecyclerViewAdapter(posts, mListener, context));*/
+
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-/*                    Post post = dataSnapshot.getValue(Post.class);
-                    gotPost.add(post);
-                    posts = gotPost;
-                    recyclerView.setAdapter(new PostRecyclerViewAdapter(posts, mListener, context));*/
+
             }
 
             @Override
@@ -117,9 +111,9 @@ public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.
 
         holder.consoleSell = consoleSells.get(position);
         this.consoleSell = consoleSells.get(position);
-        Picasso.with(context).load(holder.consoleSell.getGame().getCover()).into(holder.ivGi);
-        holder.tvGiName.setText(holder.gameSell.getGame().getName());
-        holder.tvGiPrice.setText(holder.gameSell.getPrice());
+        Picasso.with(context).load(holder.consoleSell.getPlatform().getCover()).into(holder.ivGi);
+        holder.tvGiName.setText(holder.consoleSell.getPlatform().getName());
+        holder.tvGiPrice.setText(holder.consoleSell.getPrice());
 
 
         holder.btnGiContact.setOnClickListener(new View.OnClickListener() {
