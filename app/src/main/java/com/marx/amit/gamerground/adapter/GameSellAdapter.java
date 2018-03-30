@@ -22,12 +22,12 @@ import java.util.ArrayList;
 public class GameSellAdapter extends RecyclerView.Adapter<GameSellAdapter.ViewHolder>{
 
     private final ArrayList<GameSell> gameSells;
-//    private final OnListFragmentInteractionListener mListener;
+    private final OnListFragmentInteractionListener mListener;
     private Context context;
     private GameSell gameSell;
 
-//    private static DatabaseReference mDatabase;
-//    private static DatabaseReference gameSellRef;
+    private static DatabaseReference mDatabase;
+    private static DatabaseReference gameSellRef;
 
 
 

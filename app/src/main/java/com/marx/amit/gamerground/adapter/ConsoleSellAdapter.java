@@ -21,12 +21,12 @@ import java.util.ArrayList;
 
 public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.ViewHolder>{
     private final ArrayList<ConsoleSell> consoleSells;
-    //    private final OnListFragmentInteractionListener mListener;
+    private final OnListFragmentInteractionListener mListener;
     private Context context;
     private ConsoleSell consoleSell;
 
-//    private static DatabaseReference mDatabase;
-//    private static DatabaseReference consoleSellRef;
+    private static DatabaseReference mDatabase;
+    private static DatabaseReference consoleSellRef;
 
 
 
