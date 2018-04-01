@@ -1,4 +1,5 @@
 package com.marx.amit.gamerground.model;
+
 import android.location.Location;
 
 /**
