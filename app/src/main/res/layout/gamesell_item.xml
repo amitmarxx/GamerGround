@@ -6,50 +6,53 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnGiContact"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginEnd="16dp"
         android:text="+"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
+        app:layout_constraintBottom_toBottomOf="@+id/btnGiFavorite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintTop_toTopOf="@+id/btnGiFavorite" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnGiFavorite"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/ivGi"
+        app:layout_constraintTop_toTopOf="@+id/ivGi"
         tools:layout_editor_absoluteX="264dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvGiName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        android:textSize="15dp"
+        android:textColor="#000"
+        app:layout_constraintStart_toEndOf="@+id/ivGi"
+        app:layout_constraintTop_toTopOf="@+id/ivGi" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvGiPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Price"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/ivGi"
+        app:layout_constraintStart_toEndOf="@+id/ivGi"
+        app:layout_constraintTop_toBottomOf="@+id/tvGiName" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivGi"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="8dp"
