@@ -13,8 +13,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.marx.amit.gamerground.PublishActivity;
 import com.marx.amit.gamerground.R;
 import com.marx.amit.gamerground.model.Game;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,10 @@ public class GameFragment extends Fragment  {
     protected View rootView;
     protected ConstraintLayout container;
 
+    private Game game = new Game();
+    private PublishActivity publishActivity = new PublishActivity();
+
+
     public GameFragment() {
         // Required empty public constructor
     }
@@ -46,37 +52,57 @@ public class GameFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         return inflater.inflate(R.layout.fragment_game, container, false);
 
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Game game = new Game();
         super.onViewCreated(view, savedInstanceState);
 
         tvTitle = view.findViewById(R.id.tvTitle);
+
         tvDate = view.findViewById(R.id.tvDate);
 
         tvSummary = view.findViewById(R.id.tvSummary);
         tvSummary.setMovementMethod(new ScrollingMovementMethod());
 
-        tvRating= view.findViewById(R.id.tvRating);
+        tvRating = view.findViewById(R.id.tvRating);
+
+        ivCover = view.findViewById(R.id.ivCover);
 
     }
 
-    public void setGameTitle(String data){
-        tvTitle.setText(data);
+    public void gamesSpinner(ArrayList<Game> games){
+        Game game0 = games.get(0);
+        Game game1 = games.get(1);
+        Game game2 = games.get(2);
+        Game game3 = games.get(3);
+        Game game4 = games.get(4);
+        Game game5 = games.get(5);
+        Game game6 = games.get(6);
+        Game game7 = games.get(7);
+        Game game8 = games.get(8);
+        Game game9 = games.get(9);
+
+
     }
 
     public void gamesArrived(ArrayList<Game> games) {
-        //TODO Listview
-        Game game1 = games.get(0);
 
-        tvTitle.setText(game1.getName());
-        tvRating.setText(String.valueOf(game1.getRating()));
-        tvSummary.setText(game1.getSummary());
-        System.out.println(game1.getRelease_dates());
+        Game game = games.get(0);
+
+        String coverUrl = "https:" + game.getCover().getUrl();
+        Picasso.get().load(coverUrl).fit().into(ivCover);
+
+        tvTitle.setText(game.getName());
+
+        int intRating = (int) (game.getRating());
+        tvRating.setText("Rating: " + String.valueOf(intRating));
+
+        tvSummary.setText(game.getSummary());
+
+        tvDate.setText("Release Date: " + game.getReleaseDateFormat());
+
     }
 }
