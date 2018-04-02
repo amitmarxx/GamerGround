@@ -12,6 +12,7 @@
         android:id="@+id/ivCover"
         android:layout_width="150dp"
         android:layout_height="200dp"
+        android:foregroundGravity="center"
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"

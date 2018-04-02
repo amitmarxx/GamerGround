@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,9 +17,10 @@ import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
 import com.igdb.api_android_java.model.Parameters;
 import com.marx.amit.gamerground.fragment.AccessoryFragment;
-import com.marx.amit.gamerground.fragment.ConsoleFragment;
 import com.marx.amit.gamerground.fragment.GameFragment;
+import com.marx.amit.gamerground.fragment.PlatformFragment;
 import com.marx.amit.gamerground.model.Game;
+import com.marx.amit.gamerground.model.Platform;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,34 +28,38 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.marx.amit.gamerground.R.id.actvProduct;
+
 public class PublishActivity extends AppCompatActivity implements OnItemSelectedListener {
 
-    //GameFragment gameFragment;
 
-    interface OnGamesArivedListener{
-        void onGamesArrived(ArrayList<Game> games);
-    }
+
     private AutoCompleteTextView actv;
-
     private GameFragment gameFragment;
+    private PlatformFragment platformFragment;
+    private Spinner spinner;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish);
 
-        actv = findViewById(R.id.actvProduct);
+        platformFragment = new PlatformFragment();
+        gameFragment = new GameFragment();
+
+        actv = findViewById(actvProduct);
+
+        spinner = findViewById(R.id.spProduct);
 
         // Spinner element
-        Spinner spinner = findViewById(R.id.spProduct);
-
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<>();
         categories.add("Game");
-        categories.add("Console");
+        categories.add("Platform");
         categories.add("Accessory");
 
         // Creating adapter for spinner
@@ -67,16 +71,31 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, COUNTRIES);
-        MultiAutoCompleteTextView textView = findViewById(R.id.actvProduct);
-        textView.setAdapter(adapter);
-        textView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+//        actv.setThreshold(2);
+//        actv.setAdapter(new GameAutoCompleteAdapter(this));
+//
+//        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//                Game game = (Game) adapterView.getItemAtPosition(position);
+//                actv.setText(game.getName());
+//            }
+//        });
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, PRODUCTS);
+//        MultiAutoCompleteTextView textView = findViewById(actvProduct);
+//        textView.setAdapter(adapter);
+//        textView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+//
+//    }
+//
+//
+//
+//    private static final String[] PRODUCTS = new String[]{
+//
+//            "Belgium", "France", "Italy", "Germany", "Spain"
+//    };
     }
-
-    private static final String[] COUNTRIES = new String[]{
-            "Belgium", "France", "Italy", "Germany", "Spain"
-    };
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -88,7 +107,6 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
 
         if (position == 0) {
             // Create fragment and give it an argument specifying the article it should show
-            gameFragment = new GameFragment();
             Bundle args = new Bundle();
             args.putInt(String.valueOf(GameFragment.ARG_POSITION), position);
             gameFragment.setArguments(args);
@@ -105,14 +123,13 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
 
         } else if (position == 1) {
 
-            ConsoleFragment consoleFragment = new ConsoleFragment();
             Bundle args = new Bundle();
-            args.putInt(String.valueOf(ConsoleFragment.ARG_POSITION), position);
-            consoleFragment.setArguments(args);
+            args.putInt(String.valueOf(PlatformFragment.ARG_POSITION), position);
+            platformFragment.setArguments(args);
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-            transaction.replace(R.id.container, consoleFragment);
+            transaction.replace(R.id.container, platformFragment);
             transaction.addToBackStack(null);
 
             transaction.commit();
@@ -142,59 +159,103 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
 
         APIWrapper wrapper = new APIWrapper(this, "833c28f5d38906f156741a609002c0ed");
 
-        Parameters params = new Parameters()
+        if (spinner.getSelectedItemPosition() == 0) {
+            Parameters params = new Parameters()
 
-                .addSearch(toSearch)
-                .addFields("id,name,release_dates.date,rating,summary,cover,genres")
-                .addLimit("10")
-                .addOffset("0");
+                    .addSearch(toSearch)
+                    .addFields("id,name,first_release_date,rating,summary,cover,genres")
+                    .addLimit("10")
+                    .addOffset("0");
 
-        wrapper.search(APIWrapper.Endpoint.GAMES, params, new onSuccessCallback() {
-            @Override
-            public void onSuccess(JSONArray result) {
-                // JSONArray containing 5 Zelda games
-                //System.out.println(result);
+            wrapper.search(APIWrapper.Endpoint.GAMES, params, new onSuccessCallback() {
+                @Override
+                public void onSuccess(JSONArray result) {
+                    // JSONArray containing 5 Zelda games
+                    //System.out.println(result);
 
-                Gson gson = new Gson();
+                    Gson gson = new Gson();
 
-                String game1 = null;
-                ArrayList<Game> games = new ArrayList<>();
-                for (int i = 0; i < result.length(); i++) {
-                    try {
-                        String json = result.get(i).toString();
+                    String game1 = null;
+                    ArrayList<Game> games = new ArrayList<>();
+                    for (int i = 0; i < result.length(); i++) {
+                        try {
+                            String json = result.get(i).toString();
 
-                        Game game = gson.fromJson(json, Game.class);
+                            Game game = gson.fromJson(json, Game.class);
 
-                        games.add(game);
-                        if (i == 0)
-                            game1 = game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl();
-                        // tvSearch.setText(game1 + "\n" + game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl());
+                            games.add(game);
+                            if (i == 0)
+                                game1 = game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl();
+                            // tvSearch.setText(game1 + "\n" + game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl());
 
-                    } catch (JSONException e) {
-                        Toast.makeText(getApplicationContext(), "ERROR!!!!!!", Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "ERROR!!!!!!", Toast.LENGTH_LONG).show();
+                        }
                     }
+
+                    gameFragment.gamesArrived(games);
+                    String searchResult = result.toString();
+
+                    System.out.println(searchResult);
+                    if (gameFragment != null)
+                        gameFragment.gamesArrived(games);
                 }
 
-                gameFragment.gamesArrived(games);
-                String searchResult = result.toString();
+                @Override
+                public void onError(VolleyError error) {
+                    // Do something on error
+                    // JSONArray containing 5 Zelda games
+                }
+            });
+        }
 
-                System.out.println(searchResult);
-                if (gameFragment!=null)
-                gameFragment.gamesArrived(games);
-            }
+        else if (spinner.getSelectedItemPosition() == 1){
+            final Parameters params = new Parameters()
 
-            @Override
-            public void onError(VolleyError error) {
-                // Do something on error
-                // JSONArray containing 5 Zelda games
+                    .addSearch(toSearch)
+                    .addFields("id,name,logo,versions.release_dates.date,summary")
+                    .addLimit("10");
 
-            }
-        });
+            wrapper.search(APIWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback() {
+                @Override
+                public void onSuccess(JSONArray result) {
+                    // JSONArray containing 5 Zelda games
+                    System.out.println(result);
 
-        //Game game = new Game();
+                    Gson gson = new Gson();
 
+                    String platform1 = null;
+                    ArrayList<Platform> platforms = new ArrayList<>();
+                    for (int i = 0; i < result.length(); i++) {
+                        try {
+                            String json = result.get(i).toString();
+                            Platform platform = gson.fromJson(json, Platform.class);
+
+                            platforms.add(platform);
+                            if (i == 0)
+                                platform1 = platform.getName() + "\n" + platform.getReleaseDateFormat() + "\n" + platform.getLogo().getUrl();
+                            // tvSearch.setText(game1 + "\n" + game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl());
+
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "ERROR!!!!!!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    platformFragment.platformsArrived(platforms);
+                    String searchResult = result.toString();
+
+                    System.out.println(searchResult);
+                    if (platformFragment != null)
+                        platformFragment.platformsArrived(platforms);
+                }
+
+                @Override
+                public void onError(VolleyError error) {
+                    // Do something on error
+                    // JSONArray containing 5 Zelda games
+                }
+            });
+        }
     }
-
-
 }
 
