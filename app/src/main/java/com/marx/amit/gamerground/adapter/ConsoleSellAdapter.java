@@ -9,9 +9,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.marx.amit.gamerground.R;
 import com.marx.amit.gamerground.model.ConsoleSell;
+import com.marx.amit.gamerground.model.Game;
 import com.marx.amit.gamerground.model.GameSell;
+import com.marx.amit.gamerground.model.Platform;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -107,22 +115,17 @@ public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.
     @Override
     public void onBindViewHolder(ConsoleSellAdapter.ViewHolder holder, int position) {
 
-
-
         holder.consoleSell = consoleSells.get(position);
         this.consoleSell = consoleSells.get(position);
-        Picasso.with(context).load(holder.consoleSell.getPlatform().getCover()).into(holder.ivGi);
+        Picasso.get().load(holder.consoleSell.getPlatform().getLogo().getUrl()).into(holder.ivGi);
         holder.tvGiName.setText(holder.consoleSell.getPlatform().getName());
         holder.tvGiPrice.setText(holder.consoleSell.getPrice());
-
-
         holder.btnGiContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO: contact
             }
         });
-
         holder.btnGiFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

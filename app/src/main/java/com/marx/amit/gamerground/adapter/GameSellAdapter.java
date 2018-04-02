@@ -9,9 +9,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.marx.amit.gamerground.R;
 import com.marx.amit.gamerground.model.GameSell;
+import com.squareup.picasso.Picasso;
+//import com.tsuryohananov.artshare.fragment.PostFragment.OnListFragmentInteractionListener; //TODO: this line
+
 
 import java.util.ArrayList;
 
@@ -130,9 +137,6 @@ public class GameSellAdapter extends RecyclerView.Adapter<GameSellAdapter.ViewHo
                 //TODO: favorite
             }
         });
-
-
-
 
 
     }
