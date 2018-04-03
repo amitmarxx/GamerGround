@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.marx.amit.gamerground.fragment.GameSellFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new GameSellFragment(), "GameSellList").commit();
     }
 
     @Override
