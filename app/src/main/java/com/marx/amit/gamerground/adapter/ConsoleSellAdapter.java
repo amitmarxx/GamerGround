@@ -16,9 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.marx.amit.gamerground.R;
 import com.marx.amit.gamerground.model.ConsoleSell;
-import com.marx.amit.gamerground.model.Game;
 import com.marx.amit.gamerground.model.GameSell;
-import com.marx.amit.gamerground.model.Platform;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,9 +25,9 @@ import java.util.ArrayList;
  * Created by tsuryohananov on 29/03/2018.
  */
 
-public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.ViewHolder>{
+public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.ViewHolder> {
     private final ArrayList<ConsoleSell> consoleSells;
-    private final OnListFragmentInteractionListener mListener;
+    //private final OnListFragmentInteractionListener mListener;
     private Context context;
     private ConsoleSell consoleSell;
 
@@ -37,20 +35,18 @@ public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.
     private static DatabaseReference consoleSellRef;
 
 
-
     public ConsoleSellAdapter(ArrayList<ConsoleSell> consoleSells) {
         this.consoleSells = consoleSells;
     }
 
-    public ConsoleSellAdapter(OnListFragmentInteractionListener listener, Context context) {
+    public ConsoleSellAdapter(/*OnListFragmentInteractionListener listener,*/ Context context) {
         this.mDatabase = FirebaseDatabase.getInstance().getReference();
         this.consoleSellRef = mDatabase.getDatabase().getReference("consoleSell");
         this.consoleSells = new ArrayList<>();
         getAllConsoleSells();
-        this.mListener = listener;
+        //this.mListener = listener;
         this.context = context;
     }
-
 
 
     public void getAllConsoleSells() {
@@ -70,9 +66,9 @@ public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.
                 try {
                     //int position = 0;
                     for (int i = 0; i < consoleSells.size(); i++) {
-                        String crntIdTime = consoleSells.get(i).getId() + consoleSells.get(i).getTimeStamp();
+                        String crntIdTime = consoleSells.get(i).getSellId();
                         assert consoleSell != null;
-                        String consoleIdTime = consoleSell.getId() + consoleSell.getTimeStamp();
+                        String consoleIdTime = consoleSell.getSellId();
                         if (consoleIdTime.equals(crntIdTime)) {
                             consoleSells.remove(i);
                             consoleSells.add(i, consoleSell);
@@ -103,8 +99,6 @@ public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.
     }
 
 
-
-
     @Override
     public ConsoleSellAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -132,10 +126,6 @@ public class ConsoleSellAdapter extends RecyclerView.Adapter<ConsoleSellAdapter.
                 //TODO: favorite
             }
         });
-
-
-
-
 
     }
 

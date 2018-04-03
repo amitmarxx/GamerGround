@@ -8,19 +8,22 @@ import android.location.Location;
 
 public class ConsoleSell extends Sell {
     private Platform platform;
-    private String timeStamp;
+    private String sellId;
 
     public ConsoleSell() {
+
     }
 
-    public ConsoleSell(Platform platform) {
+    public ConsoleSell(Platform platform, String sellId) {
         this.platform = platform;
+        this.sellId = sellId;
     }
 
-    public ConsoleSell(User publisher, String id, Location location, String price, Platform platform, String timeStamp) {
+    public ConsoleSell(User publisher, String id, Location location, String price, Platform platform, String sellId) {
         super(publisher, id, location, price);
         this.platform = platform;
-        this.timeStamp = timeStamp;
+
+        this.sellId = sellId;
     }
 
     public Platform getPlatform() {
@@ -31,18 +34,19 @@ public class ConsoleSell extends Sell {
         this.platform = platform;
     }
 
+    public String getSellId() {
+        return sellId;
+    }
+
+    public void setSellId(String sellId) {
+        this.sellId = sellId;
+    }
+
     @Override
     public String toString() {
         return "ConsoleSell{" +
                 "platform=" + platform +
+                ", sellId='" + sellId + '\'' +
                 '}';
-    }
-
-    public String getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
     }
 }
