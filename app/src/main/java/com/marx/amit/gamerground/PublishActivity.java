@@ -33,7 +33,6 @@ import static com.marx.amit.gamerground.R.id.actvProduct;
 public class PublishActivity extends AppCompatActivity implements OnItemSelectedListener {
 
 
-
     private AutoCompleteTextView actv;
     private GameFragment gameFragment;
     private PlatformFragment platformFragment;
@@ -177,8 +176,9 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
 
                     String game1 = null;
                     ArrayList<Game> games = new ArrayList<>();
-                    for (int i = 0; i < result.length(); i++) {
-                        try {
+                    try {
+                        for (int i = 0; i < result.length(); i++) {
+
                             String json = result.get(i).toString();
 
                             Game game = gson.fromJson(json, Game.class);
@@ -188,18 +188,19 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
                                 game1 = game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl();
                             // tvSearch.setText(game1 + "\n" + game.getName() + "\n" + game.getRating() + "\n" + game.getCover().getUrl());
 
-                        } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), "ERROR!!!!!!", Toast.LENGTH_LONG).show();
                         }
-                    }
 
-                    gameFragment.gamesArrived(games);
-                    String searchResult = result.toString();
-
-                    System.out.println(searchResult);
-                    if (gameFragment != null)
                         gameFragment.gamesArrived(games);
+                        String searchResult = result.toString();
+
+                        System.out.println(searchResult);
+                        if (gameFragment != null)
+                            gameFragment.gamesArrived(games);
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "ERROR!!!!!!", Toast.LENGTH_LONG).show();
+                    }
                 }
+
 
                 @Override
                 public void onError(VolleyError error) {
@@ -207,9 +208,7 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
                     // JSONArray containing 5 Zelda games
                 }
             });
-        }
-
-        else if (spinner.getSelectedItemPosition() == 1){
+        } else if (spinner.getSelectedItemPosition() == 1) {
             final Parameters params = new Parameters()
 
                     .addSearch(toSearch)
