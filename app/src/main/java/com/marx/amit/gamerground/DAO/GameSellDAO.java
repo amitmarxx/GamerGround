@@ -28,16 +28,16 @@ public class GameSellDAO {
         return sharedInstance;
     }
 
-    public static void writeGameSell(GameSell gameSell) {
-        getInstance();
+    public void writeGameSell(GameSell gameSell) {
+        //getInstance();
         gameSellRef.child(gameSell.getSellId()).setValue(gameSell);
     }
 
-    public static void deleteGameSell(GameSell gameSell) {
+    public void deleteGameSell(GameSell gameSell) {
         gameSellRef.child(gameSell.getSellId()).setValue(null);
     }
 
-    public static String getTimeStamp() {
+    public String getTimeStamp() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(new Date());
     }
