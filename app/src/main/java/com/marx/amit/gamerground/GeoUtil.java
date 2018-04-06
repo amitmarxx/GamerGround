@@ -65,4 +65,6 @@ public class GeoUtil {
         }
         return countries;
     }
+
+    //TODO: Locale(chosen by user).equles(Locale from server) - for sorting the list shown to the user by locality
 }
