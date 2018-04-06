@@ -102,8 +102,8 @@
 //    private List<Game> findGames(Context context, String gameName) {
 //
 //        APIWrapper wrapper = new APIWrapper(context,"833c28f5d38906f156741a609002c0ed");
-//        Parameters findGames = new Parameters().addSearch()
-//        return wrapper.keywords(gameName);
+//        Parameters findGames = new Parameters().addSearch();
+//        return wrapper.keywords(gameName).toString();
 //    }
 //
 //}
