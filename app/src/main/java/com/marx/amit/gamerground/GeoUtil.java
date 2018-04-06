@@ -5,6 +5,7 @@ import android.location.Address;
 import android.location.Geocoder;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,5 +54,15 @@ public class GeoUtil {
             //coordinates not found :(
         }
         return null;
+    }
+
+    public ArrayList<String> getCountries() {
+        String[] locales = Locale.getISOCountries(); // here we get the countries codes
+        ArrayList<String> countries = new ArrayList<>();
+        for (String countryCode : locales) {
+            Locale obj = new Locale(Locale.getDefault().getLanguage(), countryCode); // iter country code
+            countries.add(obj.getDisplayCountry());
+        }
+        return countries;
     }
 }

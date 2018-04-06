@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity
 
         String latLong = GeoUtil.getInstance(getApplicationContext()).getCoordinates("תל אביב");
         Log.d("LAT + LONG", latLong);
+
     }
 
 
