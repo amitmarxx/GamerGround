@@ -5,6 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_game_sell"
+            android:icon="@drawable/ic_star_border_black_24dp"
+            android:title="GameSell" />
+        <item
+            android:id="@+id/nav_console_sell"
+            android:icon="@drawable/ic_star_border_black_24dp"
+            android:title="ConsoleSell" />
+        <item
             android:id="@+id/nav_people"
             android:icon="@drawable/ic_people_black_24dp"
             android:title="People" />

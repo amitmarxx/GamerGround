@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.marx.amit.gamerground.fragment.ConsoleSellFragment;
 import com.marx.amit.gamerground.fragment.GameSellFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -54,6 +55,18 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_people) {
             // Handle the camera action
+        } else if (id == R.id.nav_game_sell) {
+            getSupportFragmentManager().
+                    beginTransaction().
+                    replace(R.id.container, new GameSellFragment()).
+                    commit();
+
+        } else if (id == R.id.nav_console_sell) {
+            getSupportFragmentManager().
+                    beginTransaction().
+                    replace(R.id.container, ConsoleSellFragment.newInstance()).
+                    commit();
+
         } else if (id == R.id.nav_chat) {
 
         } else if (id == R.id.nav_profile) {
