@@ -20,6 +20,7 @@ import com.marx.amit.gamerground.fragment.AccessoryFragment;
 import com.marx.amit.gamerground.fragment.GameFragment;
 import com.marx.amit.gamerground.fragment.PlatformFragment;
 import com.marx.amit.gamerground.model.Game;
+import com.marx.amit.gamerground.model.GameSell;
 import com.marx.amit.gamerground.model.Platform;
 
 import org.json.JSONArray;
@@ -94,6 +95,8 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
 //
 //            "Belgium", "France", "Italy", "Germany", "Spain"
 //    };
+
+
     }
 
     @Override
@@ -255,6 +258,11 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
                 }
             });
         }
+    }
+
+    public void btnAddProduct(View view) {
+        GameSell gameSell = new GameSell();
+        gameSell.getGame();
     }
 }
 
