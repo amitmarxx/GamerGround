@@ -97,5 +97,17 @@ public class MainActivity extends AppCompatActivity
     public void addPublish(View view) {
         Intent intent = new Intent(MainActivity.this, PublishActivity.class);
         startActivity(intent);
+
+        // ex for getting a location by lat and long:
+
+/*        String locality = GeoUtil.getInstance(getApplicationContext()).getLocality();
+        Log.d("ADDRESS", locality);
+
+        // ex for getting lat and long by location name:
+
+        String latLong = GeoUtil.getInstance(getApplicationContext()).getCoordinates("תל אביב");
+        Log.d("LAT + LONG", latLong);*/
     }
+
+
 }
