@@ -116,7 +116,7 @@ public class GameSellAdapter extends RecyclerView.Adapter<GameSellAdapter.ViewHo
         holder.tvGiPrice.setText(holder.gameSell.getPrice());
 
 
-        holder.btnGiContact.setOnClickListener(new View.OnClickListener() {
+/*        holder.btnGiContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO: contact
@@ -128,7 +128,7 @@ public class GameSellAdapter extends RecyclerView.Adapter<GameSellAdapter.ViewHo
             public void onClick(View view) {
                 //TODO: favorite
             }
-        });
+        });*/
 
 
     }

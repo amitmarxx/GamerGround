@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //getSupportFragmentManager().beginTransaction().replace(R.id.container, new GameSellFragment(), "GameSellList").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new GameSellFragment(), "GameSellList").commit();
 
         ViewPager vp_pages= (ViewPager) findViewById(R.id.vp_pages);
         PagerAdapter pagerAdapter=new FragmentAdapter(getSupportFragmentManager());
