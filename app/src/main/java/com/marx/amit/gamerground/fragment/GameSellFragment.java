@@ -24,6 +24,7 @@ public class GameSellFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     public GameSellFragment() {
+        
     }
 
     public static GameSellFragment newInstance() {
