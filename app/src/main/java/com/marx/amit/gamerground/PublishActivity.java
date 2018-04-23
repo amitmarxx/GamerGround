@@ -8,14 +8,18 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
 import com.igdb.api_android_java.model.Parameters;
+import com.marx.amit.gamerground.DAO.GameSellDAO;
 import com.marx.amit.gamerground.fragment.AccessoryFragment;
 import com.marx.amit.gamerground.fragment.GameFragment;
 import com.marx.amit.gamerground.fragment.PlatformFragment;
@@ -33,10 +37,19 @@ import static com.marx.amit.gamerground.R.id.actvProduct;
 
 public class PublishActivity extends AppCompatActivity implements OnItemSelectedListener {
 
+    private static final String TAG = PublishActivity.class.getSimpleName();
 
     private AutoCompleteTextView actv;
+    private EditText etPrice;
+    private EditText etLocation;
+
+    private GameSellDAO gameSellDAO;
+    private GameSell gameSell;
+  //  private GameSellAdapter gameSellAdapter;
     private GameFragment gameFragment;
+
     private PlatformFragment platformFragment;
+
     private Spinner spinner;
 
 
@@ -156,7 +169,7 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
         // TODO Auto-generated method stub
     }
 
-    public void btnSearch(View view) {
+    public void btnSet(View view) {
         String toSearch = actv.getText().toString();
 
         APIWrapper wrapper = new APIWrapper(this, "833c28f5d38906f156741a609002c0ed");
@@ -260,9 +273,31 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
         }
     }
 
+
     public void btnAddProduct(View view) {
-        GameSell gameSell = new GameSell();
-        gameSell.getGame();
+
+      //  GameSellAdapter gameSellAdapter;
+
+        actv = findViewById(R.id.actvProduct);
+        etPrice = findViewById(R.id.etPrice);
+        etLocation = findViewById(R.id.etLocation);
+
+
+
+        List<String> gameSellList = new ArrayList<>();
+        gameSellList.add("name = " + actv.getText().toString());
+        gameSellList.add("price = " + etPrice.getText().toString());
+        gameSellList.add("Location = " + etLocation.getText().toString());
+
+
+        //TODO: get the Game from the api into a Game object (Game game = from api)
+        //TODO: GameSell gameSell = new GameSell(game, sellId) - myRef.setValue(gameSell)
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("GameSell").push();
+
+        myRef.setValue(gameSellList);
     }
 }
 

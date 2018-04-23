@@ -11,12 +11,17 @@ import android.view.ViewGroup;
 
 import com.marx.amit.gamerground.R;
 import com.marx.amit.gamerground.adapter.GameSellAdapter;
+//import com.marx.amit.gamerground.adapter.GameSellAdapter;
 
 /**
  * Created by tsuryohananov on 03/04/2018.
  */
 
 public class GameSellFragment extends Fragment {
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public GameSellFragment() {
     }
@@ -28,6 +33,7 @@ public class GameSellFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable

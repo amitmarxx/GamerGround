@@ -54,7 +54,6 @@ public class GameSellAdapter extends RecyclerView.Adapter<GameSellAdapter.ViewHo
         gameSellRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
                 GameSell gameSell = dataSnapshot.getValue(GameSell.class);
                 gameSells.add(gameSell);
                 notifyDataSetChanged();
