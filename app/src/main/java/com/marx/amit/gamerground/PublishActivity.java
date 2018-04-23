@@ -298,6 +298,7 @@ public class PublishActivity extends AppCompatActivity implements OnItemSelected
         DatabaseReference myRef = database.getReference("GameSell").push();
 
         myRef.setValue(gameSellList);
+        //
     }
 }
 
